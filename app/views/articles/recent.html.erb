@@ -1,0 +1,27 @@
+<div id="articles">
+    <p align="left">
+      <%# for article in @articles %>
+        <% @articles.reverse.each do |articles| %>
+          <p align="left"><b><%= link_to (h articles.article_title).html_safe, articles, :id => 'title' %></b><% if articles.comments.present? %> (<%= articles.comments.count %> <%= articles.comments.count <= 1 ? "Comment" : "Comments" %>)<% end %></p>
+          <p align="left">&nbsp;&nbsp;<i><%=h articles.date_published.to_date.to_s(:long) %></i></p>
+          <!--<div class="ec">-->
+          <!--<p align="left" class="expand">Show Content</p>-->
+            <div class="collapse"> 
+            <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=h truncate(articles.body, :length => 400, :omission => "...") %></p>
+
+            <% unless articles.comments.empty? %><p align="right"><%= link_to "Show #{articles.comments.count} #{articles.comments.count <= 1 ? "comment" : "comments"}", articles, :id => 'article', :class => 'tooltip_link right', :title => 'Show comments' %></p><% end %>
+              <% if current_user.present? %>
+                <%# if current_user && (current_user == article.author || article.editors.include?(current_user)) %>
+                <%# if article.editable_by?(current_user) %>
+                <% if current_user.username == articles.author %>
+                  <p align="right">
+                      <%= link_to 'Edit', edit_article_path(articles), :id => 'article' %> |
+                      <%= link_to 'Destroy', articles, :confirm => 'Are you sure?', :method => :delete, :id => 'article' %>
+                  </p>
+                <% end%>
+              <% end%>
+            </div><!--</div>--> 
+
+        <% end %>
+      <%# end %>
+</div>

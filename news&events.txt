@@ -1,0 +1,25 @@
+<% @news_events.each do |news_event| %>
+	<h3><%= news_event.date %></h3>
+	<p><%= news_event.news_title %></p>
+	<p class="more"><%= link_to 'more', news_event %></p>
+<% end %>
+
+, :collection => @news_events, :as => :ne
+<div id="news-box">
+                          <%= @events.each do |news_event| %>
+                              <h3><%= news_event.date.to_date %></h3>
+                              <p><%= news_event.news_title %></p>
+                              <p class="more"><%= link_to 'more', news_event %></p>
+                          <% end %>
+</div>
+
+#{RAILS_ROOT}
+
+			<div id="news-box">                        
+				<h3><a href="#">02.19.12</a></h3>
+				<p>As of now, This site is still under construction, we must build and polish this site more...</p>
+				<p class="more"><a href="#">more</a></p>
+				<h3><a href="#">02.18.12</a></h3>
+				<p>Thank you for visiting us even though the site is still not finished.</p>
+				<p class="more"><a href="#">more</a></p>
+			</div>

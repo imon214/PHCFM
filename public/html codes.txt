@@ -1,0 +1,235 @@
+http://www.htmlcodetutorial.com/linking/linking_famsupp_120.html
+
+----------------------------------------------------------
+
+Background Sound In Web Page>>>>>
+
+<SCRIPT TYPE="text/javascript">
+<!-- 
+var filename="hazy_shade_of_winter.mid";
+if (navigator.appName == "Microsoft Internet Explorer")
+    document.writeln ('<BGSOUND SRC="' + filename + '">');
+else if (navigator.appName == "Netscape")
+    document.writeln ('<EMBED SRC="' + filename + '" AUTOSTART=TRUE WIDTH=144 HEIGHT=60><P>');
+// -->
+</SCRIPT>
+<NOSCRIPT>
+<BGSOUND SRC="hazy_shade_of_winter.mid">
+</NOSCRIPT>
+
+----------------------------------------------------------
+Time Now Script >>>>>>>>>>
+
+<SCRIPT TYPE="text/javascript">
+<!--
+document.write("right now: " + new Date());
+//-->
+</SCRIPT>
+
+----------------------------------------------------------
+Popup Window
+
+First, copy this script into the <HEAD> section of your page: 
+
+
+<SCRIPT TYPE="text/javascript">
+<!--
+function popup(mylink, windowname)
+{
+if (! window.focus)return true;
+var href;
+if (typeof(mylink) == 'string')
+   href=mylink;
+else
+   href=mylink.href;
+window.open(href, windowname, 'width=400,height=200,scrollbars=yes');
+return false;
+}
+//-->
+</SCRIPT>
+
+
+<A 
+   HREF="popupbasic.html" 
+   onClick="return popup(this, 'notes')">my popup</A>
+
+
+
+onClick="return popup(this, 'notes')"
+
+And don't put a space in the page name between the single quotes.  If you do, the link will act just like a regular link. 
+
+----------------------------------------------------------
+
+Popup Image
+
+<MAP NAME="index">
+<AREA 
+   HREF="mypopup.html" ALT="My Popup"
+   COORDS="10,10,120,120" SHAPE=RECT 
+   onClick="return popup(this, 'gloss')">
+<AREA 
+   SHAPE=RECT ALT="Your Popup"
+   COORDS="140,10,180,50" HREF="yourpopup.html" 
+   onClick="return popup(this, 'gloss')">
+
+<AREA SHAPE=DEFAULT NOHREF>
+</MAP>
+
+<IMG SRC="mymap.gif" HEIGHT=130 WIDTH=190 ALT="Image Map Example"
+BORDER="0" USEMAP="#index">
+
+----------------------------------------------------------
+
+Popup Windows: Opening Automatically
+
+
+We'll use the same script as in the first example. Copy this script in the <HEAD> section of your page: 
+
+
+<SCRIPT TYPE="text/javascript">
+<!--
+function popup(mylink, windowname)
+{
+if (! window.focus)return true;
+var href;
+if (typeof(mylink) == 'string')
+   href=mylink;
+else
+   href=mylink.href;
+window.open(href, windowname, 'width=400,height=200,scrollbars=yes');
+return false;
+}
+//-->
+</SCRIPT>
+
+
+
+This time, instead of running the script from a link we'll run it from the onLoad attribute of the <BODY ...> tag. 
+
+
+<BODY onLoad="popup('autopopup.html', 'ad')">
+----------------------------------------------------------
+Popup Windows: From a Form
+
+Copy the following script exactly as-is into the <HEAD> section of your document:
+
+
+<SCRIPT TYPE="text/javascript">
+<!--
+function popupform(myform, windowname)
+{
+if (! window.focus)return true;
+window.open('', windowname, 'height=200,width=400,scrollbars=yes');
+myform.target=windowname;
+return true;
+}
+//-->
+</SCRIPT>
+Now we'll add some code so that the popup opens when the user submits the form. Add an onSubmit attribute to <FORM ...> tag: 
+
+
+<FORM METHOD=POST
+   ACTION="../cgi-bin/mypopupcgi.pl"
+   onSubmit="popupform(this, 'join')">
+
+----------------------------------------------------------
+Targeting The Opener
+
+
+To create links in the popup window that target back to the main window, first put this JavaScript in the <HEAD> of the popup page: 
+
+
+<SCRIPT TYPE="text/javascript">
+<!--
+function targetopener(mylink, closeme, closeonly)
+{
+if (! (window.focus && window.opener))return true;
+window.opener.focus();
+if (! closeonly)window.opener.location.href=mylink.href;
+if (closeme)window.close();
+return false;
+}
+//-->
+</SCRIPT>
+A link that uses this script looks like this: 
+
+
+<A 
+   HREF="rbex.html" 
+   onClick="return targetopener(this)">my page</A>
+
+----------------------------------------------------------
+
+Popup Windows: Closing Wheb they go to the opener
+
+<A 
+   HREF="rbex.html" 
+   onClick="return targetopener(this,true)">main page</A>
+
+----------------------------------------------------------
+
+Popup Windows: Closing popup
+
+If you just want to close the popup without doing anything else, add another true. You should still link to a valid URL in case the user found the page without opening it as a popup.
+
+
+<A 
+   HREF="rbex.html" 
+   onClick="return targetopener(this,true,true)">close</A>
+
+----------------------------------------------------------
+
+Digital Clock
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<title>Simple Javascript Digital Clock</title> 
+<style type="text/css" media="all"> 
+.frm { 
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 11px; 
+    font-weight: bold; 
+    color: #164BA0; 
+    background-color: #D1D1D1; 
+    border: 1px solid #83AAD3; 
+} 
+</style> 
+
+</head> 
+
+<body> 
+
+<FORM NAME = "clockForm"> 
+  <INPUT TYPE="text" NAME = "clock" SIZE = "10" class="frm"> 
+</FORM> 
+
+<SCRIPT LANGUAGE="JavaScript"> 
+  <!-- 
+  
+  function display() { 
+    var Today = new Date(); 
+    var hours = Today.getHours(); 
+    var min = Today.getMinutes(); 
+    var sec = Today.getSeconds(); 
+    var Time = ((hours > 12) ? hours - 12 :(hours == 0) ? 12 :hours); 
+    Time += ((min < 10) ? ":0" : ":") + min; 
+    Time += ((sec < 10) ? ":0" : ":") + sec; 
+    Time += (hours >= 12) ? " PM" : " AM"; 
+    this.clockForm.clock.value = Time; 
+    setTimeout("display()",1000); 
+  } 
+
+  display(); 
+
+  --> 
+</SCRIPT> 
+
+</body> 
+</html>
+
+----------------------------------------------------------
+
+

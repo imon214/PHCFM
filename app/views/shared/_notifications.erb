@@ -1,0 +1,22 @@
+<div id="notifications" class="display:none;">
+  <div id="default">
+    <h1>#{title}</h1>
+    <p>#{body}</p>
+  </div>
+
+  <div id="download" class="ui-state-highlight" style="padding:10px; -moz-box-shadow:0 0 6px #989898; -webkit-box-shadow:0 0 6px #989898; box-shadow:0 0 6px #989898;"> 
+    <a class="ui-notify-close" href="#"><span class="ui-icon ui-icon-close" style="float:right"></span></a>         
+    <h1>#{title}</h1>
+    <p>#{body}</p>
+    <p>
+      Please go to the <%#= link_to "PatchBundle List", patch_bundles_path, :class => "notification-close" %> to download it.
+    </p>
+  </div>
+
+  <div id="error" class="ui-state-error" style="padding:10px; -moz-box-shadow:0 0 6px #980000; -webkit-box-shadow:0 0 6px #980000; box-shadow:0 0 6px #980000;">
+    <span style="float:left; margin:0 5px 0 0;" class="ui-icon ui-icon-alert"></span>
+      <h1>#{title}</h1>
+      <p>#{body}</p>
+    <p style="text-align:center"><a class="ui-notify-close" href="#">Close Me</a></p>
+  </div>
+</div>

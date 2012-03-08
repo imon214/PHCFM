@@ -1,0 +1,15 @@
+<div id="articles">
+<p align="left">
+  <%= @about.title %>
+</p>
+
+<p>
+  <%= markdown(@about.body) %>
+</p>
+
+<p align="left">Link:<%= markdown(@about.link) %></p>
+
+
+<p align="left"><%= link_to 'Edit', edit_about_path(@about) %><br /></p>
+<p align="right"><%= link_to 'Back', abouts_path %></p>
+</div>

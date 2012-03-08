@@ -1,0 +1,3 @@
+page.insert_html :bottom, :comment, :partial => @comment_to_phcfm.phcfm
+page[@comment_to_phcfm.phcfm].visual_effect :highlight
+page[:new_comment].reset

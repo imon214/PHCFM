@@ -1,0 +1,20 @@
+<% title "News and Events" %>
+<div id="articles">
+<h1>News & Events</h1>
+
+<% @events.each do |news_event| %>
+    <p align="left"><%= news_event.news_title %></p>
+    <p align="left"><%= news_event.link %></p>
+    <p align="left"><%= news_event.body %></p>
+    <p align="left"><%= news_event.date %></p>
+    <p align="left"><%= news_event.place %></p>
+    <p align="left"><%= news_event.author %></p>
+    <p align="left"><%= link_to 'Show', news_event %> | <%= link_to 'Edit', edit_event_path(news_event) %> |
+    <%= link_to 'Destroy', news_event, :confirm => 'Are you sure?', :method => :delete %></p>
+  </tr>
+<% end %>
+
+<br />
+
+<p align="left"><%= link_to 'Add News & event', new_event_path %></p>
+</div>

@@ -1,0 +1,58 @@
+<div id="articles">
+  <p align="left">
+    <strong><font color="orange" size="3"><%= (@article.article_title) %></font></strong> <% if @article.comments.present? %>(<%= "Has #{@article.comments.count}" %> <%= @article.comments.count <= 1 ? "Comment" : "Comments" %>)<% end %>
+  </p>
+  <!--<p><small>
+    created by
+    <i><%=h @article.author %></i> on <%=h @article.date_published.to_date.to_s(:long) %>
+    </small>
+  </p>-->
+  <p><%= markdown(@article.body) %><%= markdown(@article.link) %><br /></p>
+  
+  <p align="right"><%= @article.date_published.to_date.to_s(:long) %><br />by <%= @article.author %></p>
+
+    <p align="left">
+      <% if current_user.present? %>
+        <% if current_user.username  == @article.author  %>
+          <%= link_to 'Edit Article', edit_article_path(@article) %>
+        <% end%>
+      <% end%>    
+    </p>
+      <%= image_tag 'bg/hrline.gif', :width => 600 %>
+    <br />
+
+    <% if @article.comments.present? %>
+        <p align="left"><font color="gray"><%= "Showing #{@article.comments.count <= 1 ? "Comment" : "Comments"}" %></font></p>
+          <ul class="comment_list">
+            <%= render :partial => 'comment', :collection => @article.comments.reverse %>
+          </ul>
+      <%= image_tag 'bg/hrline_reverse.gif', :width => 600 %>
+    <% end %>
+ 
+      <p align="left"><%= link_to 'Add a Comment', new_article_comment_path(@article) %><br /><br /></p>
+      <p align="right"><%= link_to 'Back', articles_path %></p>
+    
+</div>
+<!--
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".toggle_container").hide();
+        $("h2.expand_heading").toggle(function(){
+            $(this).addClass("active");
+            }, function () {
+            $(this).removeClass("active");
+        });
+        $("h2.expand_heading").click(function(){
+            $(this).next(".toggle_container").slideToggle("slow");
+        });
+        $(".expand_all").toggle(function(){
+            $(this).addClass("expanded");
+            }, function () {
+            $(this).removeClass("expanded");
+        });
+        $(".expand_all").click(function(){
+            $(".toggle_container").slideToggle("slow");
+        });
+    });
+</script>
+-->

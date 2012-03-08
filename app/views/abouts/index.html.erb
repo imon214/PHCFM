@@ -1,0 +1,16 @@
+<% title "About Us" %>
+<div id="articles">
+
+<% @abouts.each do |about| %>
+
+    <p><%= about.title %></p>
+    <p><%= markdown(about.body) %></p>
+    <p><%= markdown(about.link) %></p>
+    <p><%= link_to 'Show', about %> | <%= link_to 'Edit', edit_about_path(about) %> | <%= link_to 'Destroy', about, :confirm => 'Are you sure?', :method => :delete %></p>
+
+<% end %>
+
+<br />
+
+<%= link_to 'New About', new_about_path %>
+</div>

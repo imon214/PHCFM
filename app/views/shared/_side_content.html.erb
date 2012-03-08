@@ -1,0 +1,49 @@
+<%# content_for :side_content do %>
+<div id="search-news">
+                 <h2 align="right">Search this site</h2>
+                       <!--<%#= form_for(@phcfm) do |f| %>
+                          <div>
+                            <%#= f.text_field :q, :id => 'q' %>
+                          </div>  
+                          <div class="more"><a href="user_sessions/new">Register</a> or <a href="user_sessions">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= image_tag 'buttons/btn_search.gif', :name => 'search', :value => "" %></div>
+                       <%# end %>-->   
+                       <form action="">
+                          <div><input type="text" name="q" id="q" /></div>
+                          <div class="more"><!--<% if ! current_user %><a href="signup">Register</a> or <a href="login">Login</a><% end %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--><%= image_tag 'buttons/btn_search.gif', :name => 'search', :value => "" %></div>
+                       </form>
+				
+			<h2 class="downcast">News &amp; Events</h2>
+			<div id="news-box">                        
+				<h3><a href="#">02.19.12</a></h3>
+				<p>As of now, This site is still under construction, we must build and polish this site more...</p>
+				<p class="more"><a href="#">more</a></p>
+				<h3><a href="#">02.18.12</a></h3>
+				<p>Thank you for visiting us even though the site is still not finished.</p>
+				<p class="more"><a href="#">more</a></p>
+			</div>
+                        <div id="announcement">
+                                <p>
+                                  <%= image_tag 'buttons/about.png', :width => 16, :height => 16 %>
+                                  <%= image_tag 'announcements/announcements-white.gif', :width => 160.9, :height => 20 %>
+                                  <p><%#= link_to "Annoucement", announcement_phcfms_path %></p>
+                                  <iframe width="180" height="215" src="images/slideshow/announcement_scroller/newsnewstic.html" SCROLLING="no" FRAMEBORDER="0" border=0 allowTransparency="true"></iframe>
+                                <hr />
+                                  <%= image_tag 'banners/jk_pilgrim.gif', :width => 180, :heigh => 150 %><br /><br /><a href="http://www.wordgrub.com" target="_blank"><%= image_tag 'logos/logo.jpeg', :width => 180, :height => 74, :title => "Visit wordgrub.com", :border => 0 %></a><br />
+                                  <!--<div align="right">
+                                    <%= image_tag 'logos/bible3.gif', :width => 80, :height => 150 %><%= image_tag 'logos/worldcfm_ek1.gif', :width => 80, :height => 120 %>
+                                  </div> -->
+                                  <br />
+                                  <%= image_tag 'bg/hrline.gif', :width => 180 %>
+                                    <span>Verse of the day
+                                    Romans 12:10 <br /><br /> - "Be devoted to one another in brotherly love. Honor one another above yourselves."<br />
+                                    </span>
+                                  <br />
+                                  <%= image_tag 'bg/hrline.gif', :width => 180 %>
+                                  <br />
+                                  Not registered yet?<br /><br /> <dd><%= link_to "Register Now!", signup_path %></dd> 
+                                  <% if ! current_user %>or <%= link_to "Login", login_path %><% end %>
+                                 </p>
+                         </div>
+		</div>
+
+<%# end %>

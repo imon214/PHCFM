@@ -1,0 +1,37 @@
+<div id="articles">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>News title:</b>
+  <%= @event.news_title %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%= @event.link %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= markdown(wrap(@event.body)) %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @event.date %>
+</p>
+
+<p>
+  <b>Place:</b>
+  <%= @event.place %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%= @event.author %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
+</div>

@@ -1,0 +1,138 @@
+/* vertical menu bar */
+ul.mbv {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	width: 9em;
+}
+ul.mbv li {
+	padding: 0;
+	margin: 0;
+	border-bottom: 1px solid #9CC; /* fixes gap problem in IE */
+	position: relative;
+	z-index: 1;
+}
+ul.mbv ul {
+	margin: 0 0 0 2px;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	top: 0; /* if using borders, -1 to align top borders */
+	left: 11em;
+	width: 11em;
+	background: #9CC;
+	z-index: 2;
+}
+/* separator to mark end of menu group */
+ul.mbv li.end {
+	border-bottom: 1px dashed #399;
+}
+
+ul.mbv li a:link,
+ul.mbv li a:visited,
+ul.mbv li a:hover,
+ul.mbv li a:active {
+	display: block;
+	padding: .2em .5em;
+	width: 10em;
+	text-decoration: none;
+	background: #9CC;
+	color: #399;
+}
+ul.mbv li a:hover,
+ul.mbv li a:active {
+	background: #399;
+	color: #FFF;
+}
+
+ul.mbv li a.hidden:link,
+ul.mbv li a.hidden:visited {
+	background: #9CC url(images/mb.gif) 100% -12px no-repeat;
+}
+ul.mbv li a.visible:link,
+ul.mbv li a.visible:visited,
+ul.mbv li a.visible:hover,
+ul.mbv li a.visible:active {
+	background: #399 url(images/mb.gif) 100% -62px no-repeat;
+	color: #FFF;
+}
+
+
+/* horizontal menu bar */
+ul.mbh {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	width: 100%;
+}
+ul.mbh li {
+	float: left;
+	padding: 0;
+	margin: 0;
+	z-index: 1;
+}
+ul.mbh ul li {
+	float: none;
+	position: relative;
+	border-bottom: 1px solid #9CC; /* fixes gap problem in IE */
+}
+/* separator to mark end of menu group */
+ul.mbh ul li.end {
+	border-bottom: 1px dashed #399;
+}
+ul.mbh li ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: relative;
+	top: 0;
+	left: 0;
+	background: #9CC;
+	z-index: 2;
+}
+ul.mbh ul ul {
+	margin-left: .2em;
+	position: absolute;
+	top: 0; /* if using borders, -1px to align top borders */
+	left: 9em;
+}
+
+ul.mbh li a:link,
+ul.mbh li a:visited,
+ul.mbh li a:hover,
+ul.mbh li a:active {
+	display: block;
+	padding: .2em .5em;
+	text-decoration: none;
+	background: #9CC;
+	color: #399;
+}
+ul.mbh li a:hover,
+ul.mbh li a:active {
+	background: #399;
+	color: #FFF;
+}
+ul.mbh ul li a:link,
+ul.mbh ul li a:visited,
+ul.mbh ul li a:hover,
+ul.mbh ul li a:active {
+	width: 8em;
+}
+
+ul.mbh ul li a.hidden:link,
+ul.mbh ul li a.hidden:visited {
+	background: #9CC url(images/mb.gif) 100% -12px no-repeat;
+}
+ul.mbh li a.visible:link,
+ul.mbh li a.visible:visited,
+ul.mbh li a.visible:hover,
+ul.mbh li a.visible:active {
+	background: #399;
+	color: #FFF;
+}
+ul.mbh ul li a.visible:link,
+ul.mbh ul li a.visible:visited,
+ul.mbh ul li a.visible:hover,
+ul.mbh ul li a.visible:active {
+	background: #399 url(images/mb.gif) 100% -62px no-repeat;
+}

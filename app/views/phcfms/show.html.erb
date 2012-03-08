@@ -1,0 +1,94 @@
+<p id="notice"><%#= notice %></p>
+
+  <p>
+    <strong><font color="orange" size="3"><%=h @phcfm.title  %></font></strong> (<b><%#= @phcfm.comments.count %> <%#= @phcfm.comments.count <= 1 ? "Comment" : "Comments" %></b>)
+  </p>
+  <p><small>
+    created by
+    <i><%=h @phcfm.author %></i> on <%=h @phcfm.date_published.to_s(:long) %>
+    </small>
+  </p>
+  <p>
+    <%= @phcfm.body %> <a href="<%= @phcfm.link %>" target="_blank"><%= @phcfm.link %></a>
+  </p>
+
+  <p>Author: 
+    <%= @phcfm.author %>
+  </p>
+  
+  <p>Date published: 
+      <%= @phcfm.date_published.to_s(:long) %>
+  </p>
+
+  <%# if current_user_session %>
+    <%= link_to 'Edit Article', edit_phcfm_path(@phcfm) %> |
+  <%# end%>
+    <%= link_to 'Back', phcfms_path %>
+
+
+
+    <%#= render :partial => 'comment', :collection => @phcfm.comments.reverse %>
+  <br />
+
+  <%# if @phcfm.comments.present? %>
+    <%= image_tag 'bg/hrline.gif', :width => 618 %>
+      <p align="left"><font color="gray"><%#= @phcfm.comments.count <= 1 ? "Comment" : "Comments" %></font></p>
+        <ul class="comment_list">
+          <%#= render :partial => 'comment', :collection => @phcfm.comments %>
+        </ul>
+    <%= image_tag 'bg/hrline_reverse.gif', :width => 618 %>
+  <%# end %>
+ 
+    <p><%= link_to 'Add a Comment', new_phcfm_comment_path(@phcfm) %></p>
+      
+
+  <%#= link_to 'Edit', edit_phcfm_path(@phcfm) %> |
+  <%#= link_to 'Back', phcfms_path %>
+
+
+
+
+
+<!--
+<%#= form_for(@comment_to_phcfm) do |f| %>
+    <%#= f.error_messages %>
+    #= f.hidden_field :phcfm_id %>
+
+    <p>
+    Author: <%#= @comment_to_phcfm.name %><%#= f.label current_user_session.user.username %><br />
+        <%#= f.label :name %>
+        <%#= f.text_field :name %>
+    </p>
+  <p>
+    <%#= f.submit "Add Comment" %> | <%#= link_to "Back", root_path %>
+    <%#= link_to_function 'Back', "history.back()" %>
+  </p>
+
+
+<%# end %>
+-->
+
+
+<%#*<p>%>
+  <%#*<b>Article comment:</b>%>
+  <%#= @phcfm.article_comment %>
+<%#*</p>%>
+
+<%#*<p>%>
+  <%#*<b>Article commentator:</b>%>
+  <%#= @phcfm.article_commentator %>
+<%#*</p>%>
+
+<%#*<p>%>
+  <%#*<b>Commentator email:</b>%>
+  <%#= @phcfm.commentator_email %>
+<%#*</p>%>
+
+<%#*<p>%>
+  <%#*<b>Comment published:</b>%>
+  <%#= @phcfm.comment_published %>
+<%#*</p>%>
+
+
+<%#= link_to 'Edit', edit_phcfm_path(@phcfm) %> |
+<%#= link_to 'Back', phcfms_path %>

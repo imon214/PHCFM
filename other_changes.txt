@@ -1,0 +1,91 @@
+<script type="text/javascript">
+  function alertStatus(e) {
+        alert("e.success = " + e.success +"\ne.id = "+ e.id +"\ne.ref = "+ e.ref);
+}
+  swfobject.embedSWF("#{RAILS_ROOT}/assets/PHCFMFlashPhotoGallery/myalbum.swf", "myContent", "300", "120", "9.0.0", "#{RAILS_ROOT}/assets/Flash/expressInstall.swf", null, null, null, alertStatus);
+  
+</script>
+
+
+articles_routing_spec.rb
+default
+
+require "spec_helper"
+
+describe ArticlesController do
+  describe "routing" do
+
+    it "routes to #index" do
+      get("/articles").should route_to("articles#index")
+    end
+
+    it "routes to #new" do
+      get("/articles/new").should route_to("articles#new")
+    end
+
+    it "routes to #show" do
+      get("/articles/1").should route_to("articles#show", :id => "1")
+    end
+
+    it "routes to #edit" do
+      get("/articles/1/edit").should route_to("articles#edit", :id => "1")
+    end
+
+    it "routes to #create" do
+      post("/articles").should route_to("articles#create")
+    end
+
+    it "routes to #update" do
+      put("/articles/1").should route_to("articles#update", :id => "1")
+    end
+
+    it "routes to #destroy" do
+      delete("/articles/1").should route_to("articles#destroy", :id => "1")
+    end
+
+  end
+end
+
+
+Changed
+require "spec_helper"
+
+describe ArticlesController do
+  describe "routing" do
+
+    it "routes to #index" do
+      get("/articles").should route_to("articles#index")
+    end
+
+    it "routes to #new" do
+      get("/articles/new").should route_to("articles#new")
+    end
+
+    it "routes to #show" do
+      get("/foo").should route_to("articles#show", :id => "foo")
+    end
+
+    it "routes to #edit" do
+      get("/foo/edit").should route_to("articles#edit", :id => "foo")
+    end
+
+    it "routes to #create" do
+      post("/articles").should route_to("articles#create")
+    end
+
+    it "routes to #update" do
+      put("/articles/foo").should route_to("articles#update", :id => "foo")
+    end
+
+    it "routes to #destroy" do
+      delete("/articles/foo").should route_to("articles#destroy", :id => "foo")
+    end
+
+  end
+end
+
+
+  resources :articles, :path => ''
+  resources :articles, :path => '', :only => [] do
+    resources :comments, :path => '', :except => [:index]
+  end

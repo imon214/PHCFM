@@ -1,0 +1,31 @@
+  
+  <li class="comment">
+    
+    <i><%= comment.name %> says:</i> <%= image_tag 'icon/rectangle-tooltip.gif', :class => 'rectangle-tooltip' %>
+    <div class="comment_body">
+      <blockquote>&nbsp;&nbsp;&nbsp;<%= markdown(wrap(comment.body)) %></blockquote>
+    </div>
+    <p align="right"><strong>posted </strong><%= time_ago_in_words(comment.created_at) %> ago</p>
+      <%#*<strong>updated </strong><%= time_ago_in_words(comment.updated_at) %>
+      <% if current_user == comment.name %>
+        <%= link_to 'Delete your comment', [@article, comment], :method => :delete, :confirm => 'Are you sure?' %>
+      <%  end %>
+
+    <p align="right"><%= link_to 'Add a Reply', new_comment_comment_path(comment), :id => 'add_reply' %></p>
+
+      <% unless comment.comments.empty? %>
+        <ul class="comment_list">
+          <%= render :partial => 'comments/comment' , :collection => comment.comments %>
+        </ul>
+      <% end %>
+    
+  </li>
+
+<%#*<div class="comment">%>
+  <%#*<i><%=h comment.name %> <!--says:</i><br />%>
+  <%#= simple_format h(comment.body) %>
+  <%#= link_to 'Destroy Comment', comment,
+    :confirm => 'Are you sure?',
+    :method => :delete if logged_in? %>
+<%#*</div>%> -->
+

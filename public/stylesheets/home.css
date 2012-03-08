@@ -1,0 +1,150 @@
+
+img {
+    border: none
+}
+
+#header #title {
+    float: left;
+    padding-left: 8em;
+    position: absolute;
+    z-index: -1;
+}
+
+a.question {
+  margin-left: 3px;
+  padding: 0 0 0 19px;
+  background: url("../images/icon/question.png") no-repeat 0 50%;    
+}
+
+a.feed {
+  margin-left: 3px;
+  padding: 0 0 0 19px;
+  background: url("../images/icon/feed.png") no-repeat 0 50%;
+} 
+
+
+
+.patchId	{ width: 5%;}
+.category	{ width: 2%;}
+.status		{ width: 11%;}
+.affects	{ width: 13%;}
+.summary	{ }
+.supersedes	{ width: 5%;}
+.requires	{ width: 5%;}
+
+.ui-state-error-text input,
+.ui-state-error-text textarea {
+    border: 1px solid #cd0a0a;
+    background: #fef1ec;
+    color: #cd0a0a;
+    /*padding: 1px;
+      display: table;*/
+}
+
+#errorExplanation ul li {
+    list-style: square;
+}
+
+#ajax_spinner {
+    display: none;
+    float: right;
+}
+
+
+div#search {
+    float: right;
+    padding: 30px 60px;
+}
+
+div.markdown {
+    border-width: 1px;
+    border-color: #D6D6D6;
+    border-style: solid;
+}
+
+.tableau tr td:first-child {
+    width: 14em;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+div.overflow_table {
+    max-height: 300px;
+    overflow: auto;
+    border-width: 1px 0px 0px 1px;
+    border-color: #D6D6D6;
+    border-style: solid;
+    margin-top: 1em; /* copied from table.patchtable */
+}
+
+div.overflow_table table {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+div.overflow_table tr.even {
+    background-color: #FCFCFC;
+}
+
+
+#instructions li {
+    list-style: square;
+}
+
+#history,
+#instructions {
+    padding-top: 1em;
+}
+
+#history  p {
+    margin: .15em;
+}
+
+#tests td.true {
+    background-color: #BBFFA5;
+}
+#tests td.false {
+    background-color: #FFA5A5;
+}
+#tests div.overflow_table {
+    max-height: 10em;
+}
+
+
+#module_links {
+    border-style: double;
+    border-color: #D6D6D6;
+    border-width: 1px;
+    border-bottom-style: none;
+    padding: .3em;
+    left: 250px;
+    position: absolute;
+    margin-top: 100px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;  
+    -khtml-border-top-left-radius:5px;
+    -khtml-border-top-right-radius:5px;        
+    
+}
+
+#content h1 {
+    clear: none;
+}
+
+td.priority_30 {
+    background-color: #FFA5A5;
+}
+
+td.priority_31 {
+    background-color: #FFFFA5;
+}
+
+td.priority_32 {
+    background-color: #BBFFA5;
+}
+
+.legend {
+    display:block;
+    margin:auto;
+}

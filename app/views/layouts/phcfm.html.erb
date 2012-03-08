@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= ["PHCFM", yield(:title)].compact.join(" - ") %></title>
+    <!--<title><%= h(yield(:title) || "PHCFM") %></title>-->
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="/images/logos/CfmTinyGlobe.gif"/>
+    <%= stylesheet_link_tag 'phcfm', 'coderay' %>
+    <%= stylesheet_link_tag 'home', 'tooltips' %>
+    <%#= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js' %>
+    <%#= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js' %>
+    <%= javascript_include_tag 'plugins/Scripts/swfobject_modified', 'plugins/Scripts/scroller_nscroller' %>
+    <%= javascript_include_tag 'plugins/hoverIntent', 'plugins/jquery.easing.min', 'plugins/jquery.pngFix' %>
+    <%= javascript_include_tag 'plugins/jquery-1.2.6.pack', 'plugins/jquery-1.3.2', 'plugins/scroll-startstop.events.jquery' %>
+    <%= javascript_include_tag 'plugins/liveclock_lite', 'plugins/mb', 'plugins/menuItems' %>
+    <%= javascript_include_tag 'plugins/mmenu', 'plugins/ssm', 'plugins/expand', 'plugins/jquery.min-1.4.2' %>
+    <%= javascript_include_tag 'plugins/ssmItems', 'plugins/stepcarousel', 'plugins/superfish' %>
+    <%= javascript_include_tag 'jquery.min', 'jquery-ui.min', 'jquery_ujs' %>
+    <%= javascript_include_tag 'jquery.notify.min', 'jquery.periodicalupdater'  %>
+    <%= javascript_include_tag "application", 'swfobject' %> <!-- , 'application.notifications' -->
+    <%= csrf_meta_tags %>
+    <%= yield :rss_feed %>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-9883693-5']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>    
+    <%= yield(:head) %>
+  </head>
+  <body onload="show_clock()">
+    <div id="header">
+      <%= image_tag 'spinner.gif', :id => 'ajax_spinner' %>
+      <h1 id="logo" alt="Potter's House CFM"><%= link_to "Home", root_path %></h1>
+      <%= image_tag 'logos/name.gif', :id => "name" %>
+            <%# if current_user #logged_in? -%>
+                <div id="module_links">
+                      <%=raw "#{image_tag('icon/home.png')} #{link_to_unless_current 'Home', phcfms_path}" %> |
+                      <%=raw "#{image_tag('icon/16x16/shadow/scroll.png')} #{link_to_unless_current 'Articles', articles_path}" %> |
+                      <%#=raw "#{image_tag('icon/card.png')} #{link_to_unless_current 'Services', services_path}" %> |
+                      <%=raw "#{image_tag('icon/newspapers.png')} #{link_to_unless_current 'News & Events', events_path}" %> |
+                      <%#=raw "#{image_tag('icon/media_players_arrow.png')} #{link_to_unless_current 'Resources', resources_path}" %> |
+                      <%=raw "#{image_tag('icon/question.png')} #{link_to_unless_current 'About Us', abouts_path}" %> | 
+                      <%#=raw "#{image_tag('icon/users_pencil.png')} #{link_to_unless_current 'Contact Us', contact_us_path}" %>
+                </div>
+            <%# end -%>
+          
+            <div id="splash" class="ui-widget">
+                <%= render :partial => 'shared/splash_messages' %>
+            </div>
+      
+            <div id="log_notification">
+                    <% if current_user %>
+                        Logged in as <font color="orange"><%= current_user.username %></font>
+                        <%= link_to "Log out", logout_path %>
+                    <% else %>
+                        <%= link_to "Sign up", signup_path %> or
+                        <%= link_to "Log in", login_path %>
+                    <% end %>    
+            </div>     
+    </div>
+    
+
+    <div id="content">
+        
+          <%= render :partial => "shared/side_content" %>
+          <%#= yield :side_content %>
+      <%= yield %>
+    </div>
+    
+    <div id="footer">
+      <p>
+          <%=raw "#{image_tag('icon/home.png')} #{link_to_unless_current 'Home', phcfms_path}" %> | 
+          <%=raw "#{image_tag('icon/16x16/shadow/about.png', :width => 16, :height => 16, :align => "absmiddle", :title => "Know About Us")} #{link_to_unless_current 'About Us', abouts_path}" %><%#= image_tag 'icon/16x16/shadow/about.png', :width => 16, :height => 16, :align => "absmiddle", :title => "Know About Us" %> |
+          <%#=raw "#{image_tag('icon/users_pencil.png')} #{link_to_unless_current 'Contact Us', contact_us_path}" %> | <%#= image_tag 'icon/24x24/shadow/help.png', :width => 15, :height => 17, :align => "absmiddle", :title => "Find Help?" %> | 
+          <%#=raw "#{image_tag('icon/24x24/shadow/help.png', :width => 15, :height => 17, :align => "absmiddle", :title => "Find Help?")} #{link_to_unless_current 'Help Us', help_us_path}" %> | 
+          <%#=raw "#{image_tag('icon/24x24/shadow/help.png', :width => 15, :height => 17, :align => "absmiddle", :title => "Terms & Services")} #{link_to_unless_current 'Terms & Services', terms_and_services_path}" %>
+      </p>
+          <div style="display:none;" class="nav_up" id="nav_up"></div>
+          <div style="display:none;" class="nav_down" id="nav_down"></div>
+      <p>
+          <%= image_tag 'logos/CfmTinyGlobe.gif', :class => 'globe_footer_left', :title => 'The Potters House Christian Center' %> Copyright © 2012 PHCFM, All rights reserved. 
+          <%= image_tag 'icon/bar.gif', :class => 'globe_footer_right', :title => 'Preach the word of God over the World!' %>
+      </p>
+    </div>
+    
+    <%#= render :partial => 'shared/notifications' %>
+
+                <script>
+			$(function() {
+				var $elem = $('#content');
+				
+				$('#nav_up').fadeIn('slow');
+				$('#nav_down').fadeIn('slow');  
+				
+				$(window).bind('scrollstart', function(){
+					$('#nav_up,#nav_down').stop().animate({'opacity':'0.2'});
+				});
+				$(window).bind('scrollstop', function(){
+					$('#nav_up,#nav_down').stop().animate({'opacity':'1'});
+				});
+				
+				$('#nav_down').click(
+					function (e) {
+						$('html, body').animate({scrollTop: $elem.height()}, 800);
+					}
+				);
+				$('#nav_up').click(
+					function (e) {
+						$('html, body').animate({scrollTop: '0px'}, 800);
+					}
+				);
+                         });
+                         
+                         //tooltip_link
+                        $("a").mouseenter(function (e) { //event fired when mouse cursor enters "a" element
+                            var $class_name = $(this).attr("class").slice(13); //get class attribute of "a" element after leaving 13 characters which is equal to "tooltip_link "
+                            var $x = e.pageX - this.offsetLeft; //get mouse X coordinate relative to "a" element
+                            var $tooltip_text = $(this).attr("title"); //get title attribute of "a" element
+
+                            if ($tooltip_text.length > 0) { //display tooltip only if it has more than zero characters
+
+                                $(this).append('<div class="tooltip ' + $class_name + '">' + $tooltip_text + '</div>'); //append tooltip markup, insert class name and tooltip title from the values above
+
+                                $("a > div.tooltip.center").css("left", "" + $x - 103 + "px"); //set tooltip position from left
+                                $("a > div.tooltip.left").css("left", "" + $x + "px"); //set tooltip position from left
+                                $("a > div.tooltip.right").css("left", "" + $x - 208 + "px"); //set tooltip position from left
+
+                                $("a > div.tooltip." + $class_name).fadeIn(300); //display, animate and fade in the tooltip
+                            }
+                        });
+
+                        $("a").mouseleave(function () { //event fired when mouse cursor leaves "a" element
+                            var $class_name = $(this).attr("class").slice(13); //get class attribute of "a" element after leaving 13 characters which is equal to "tooltip_link "
+
+                            //fade out the tooltip, delay for 300ms and then remove the tooltip and end the custom queue
+                            $("a > div.tooltip." + $class_name).fadeOut(300).delay(300).queue(function () {
+                                $(this).remove();
+                                $(this).dequeue();
+                            });
+                        });                        
+		</script>
+    
+  </body>
+</html>

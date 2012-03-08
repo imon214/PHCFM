@@ -1,0 +1,51 @@
+<% title "Articles" %>
+<div id="articles">
+  <h1>Articles</h1>
+  <p align="right"><%= link_to "Show Recent", recent_articles_path %></p>
+      <% @articles.reverse.each do |article| %>
+          <p align="left"><b><%= link_to (h article.article_title).html_safe, article, :id => 'title' %></b><!--<% if article.comments.present? %> (<%= article.comments.count %> <%= article.comments.count <= 1 ? "Comment" : "Comments" %>)<% end %>--></p>
+          <p align="left"><!--from <%=h article.author %> on --><i><%=h article.date_published.to_date.to_s(:long) %></i></p>
+          <!--<div class="ec">-->
+          <!--<p align="left" class="expand">Show Content</p>-->
+            <div class="collapse"> 
+            <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=h truncate(article.body, :length => 300, :omission => "...") %></p>
+
+            <% unless article.comments.empty? %><p align="right"><%= link_to "Show #{article.comments.count} #{article.comments.count <= 1 ? "comment" : "comments"}", article, :id => 'article', :class => 'tooltip_link right', :title => 'View comment(s)' %></p><% end %>
+              <% if current_user.present? %>
+                <%# if current_user && (current_user == article.author || article.editors.include?(current_user)) %>
+                <%# if article.editable_by?(current_user) %>
+                <% if current_user.username == article.author %>
+                  <p align="right">
+                      <%= link_to 'Edit', edit_article_path(article), :id => 'article' %> |
+                      <%= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete, :id => 'article' %>
+                  </p>
+                <% end%>
+              <% end%>
+          </div><!--</div>--> 
+
+      <% end %>
+
+          <br />
+          
+          <% if current_user.present? %>
+            <% if current_user.username == 'admin' %>
+              <p align="left"><strong><%= link_to 'Add New Article', new_article_path, :id => 'article' %></strong></p>
+            <% end %>
+          <% end%>
+      <br /><br /> 
+</div>
+<!-- for coplapse and expand
+<script type="text/javascript">
+  $(function() {
+      // --- first section initially expanded:
+      $("p.expand").toggler({initShow: "div.collapse:first"});
+      // --- Other options:
+      //$("h2.expand").toggler({method: "toggle", speed: 0});
+      //$("h2.expand").toggler({method: "toggle"});
+      //$("h2.expand").toggler({speed: "fast"});
+      //$("h2.expand").toggler({method: "fadeToggle"});
+      //$("h2.expand").toggler({method: "slideFadeToggle"});    
+      $("#content").expandAll({trigger: "p.expand", ref: "div.ec",  speed: 300, oneSwitch: false});
+  });
+</script>
+-->

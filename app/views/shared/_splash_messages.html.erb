@@ -1,0 +1,23 @@
+<% if flash[:notice] -%>
+  <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
+    <p class="notice">
+      <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+      <%= flash[:notice] %>
+    </p>
+  </div>
+<% end -%>
+
+<% if flash[:error] or (@form_error_model and @form_error_model.errors.any?) -%>
+  <div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+    <p class="error">
+      <span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+      <%= flash[:error] %>
+      <%= render 'shared/error_messages', :model => @form_error_model if @form_error_model %>
+    </p>
+  </div>
+<% end -%>
+
+<script type="text/javascript">
+  $('.notice').fadeOut(20000);
+  $('.error').fadeOut(20000);
+</script>

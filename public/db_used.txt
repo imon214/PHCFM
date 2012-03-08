@@ -1,0 +1,323 @@
+PHCFM Scaffold
+
+phcfm
+article:text link:string title:string body:text date_published:datetime author:string article_comment:text article_commentator:string commentator_email:string comment_published:datetime
+
+
+or in console, run this:
+rails generate scaffold Phcfm article:text link:string title:string body:text date_published:datetime author:string article_comment:text article_commentator:string commentator_email:string comment_published:datetime
+
+
+rails generate scaffold Article article_title:string link:string body:text date_published:datetime author:string
+rails generate scaffold NewsEvents news_title:string link:string body:text date:datetime place:string author:string
+
+
+In rails 3 - not working properly so use scaffold only instead , and also - AboutUs is detecting of rails as plural model so not acceptable..
+rails generate nifty:scaffold About title:string body:text link:string
+
+Running migration
+-
+Adding colums to phcfm table
+rails g migration AddVerseofthedayToPhcfms verse_of_the_day:text 
+
+Creating new migration
+rails g migration CreateVerseOfTheDay body:text verse:string date:date author:string -----> didn't work, just created a file, so just add manually for command
+
+
+Creating Controller
+
+
+
+Creating Model
+
+
+
+rails g scaffold CommentToPhcfm name:string email:string body:text phcfm_id:integer commentator_ip:string
+
+
+
+
+
+
+
+http://kconrails.com/2010/10/23/nested-comments-in-ruby-on-rails-1-models/
+http://kconrails.com/2011/01/26/nested-comments-in-ruby-on-rails-controllers-and-views/
+
+https://github.com/hcatlin/make_resourceful/wiki/Embedded-Nested-Polymorphic-Comments
+http://railscasts.com/episodes/154-polymorphic-association
+
+
+http://www.youtube.com/watch?v=ADzJIDSw7z0
+http://rails-bestpractices.com/posts/11-needless-deep-nesting
+http://railsforum.com/viewtopic.php?id=37902
+
+
+
+
+
+Creating Authentication using Sorcery
+bundle install
+rails g sorcery:install
+      create  config/initializers/sorcery.rb
+    generate  model User --skip-migration
+      invoke  active_record
+      create    app/models/user.rb
+      invoke    rspec
+   identical      spec/models/user_spec.rb
+      insert  app/models/user.rb
+      create  db/migrate/20120221140034_sorcery_core.rb
+
+rails g sorcery:install remember_me --migrations
+        gsub  config/initializers/sorcery.rb
+      create  db/migrate/20120221141158_sorcery_remember_me.rb
+
+rails g sorcery:install reset_password user_activation session_timeout external --migrations
+        gsub  config/initializers/sorcery.rb
+      create  db/migrate/20120221141711_sorcery_reset_password.rb
+      create  db/migrate/20120221141712_sorcery_user_activation.rb
+      create  db/migrate/20120221141713_sorcery_external.rb
+
+rails g controller users new
+      create  app/controllers/users_controller.rb
+       route  get "users/new"
+      invoke  erb
+      create    app/views/users
+      create    app/views/users/new.html.erb
+      invoke  rspec
+      create    spec/controllers/users_controller_spec.rb
+      create    spec/views/users
+      create    spec/views/users/new.html.erb_spec.rb
+      invoke  helper
+      create    app/helpers/users_helper.rb
+      invoke    rspec
+      create      spec/helpers/users_helper_spec.rb
+      invoke  assets
+      invoke    js
+      create      app/assets/javascripts/users.js
+      invoke    css
+      create      app/assets/stylesheets/users.css
+
+rails g controller sessions new
+      create  app/controllers/sessions_controller.rb
+       route  get "sessions/new"
+      invoke  erb
+      create    app/views/sessions
+      create    app/views/sessions/new.html.erb
+      invoke  rspec
+      create    spec/controllers/sessions_controller_spec.rb
+      create    spec/views/sessions
+      create    spec/views/sessions/new.html.erb_spec.rb
+      invoke  helper
+      create    app/helpers/sessions_helper.rb
+      invoke    rspec
+      create      spec/helpers/sessions_helper_spec.rb
+      invoke  assets
+      invoke    js
+      create      app/assets/javascripts/sessions.js
+      invoke    css
+      create      app/assets/stylesheets/sessions.css
+
+rake db:migrate:redo --trace
+
+
+
+When there is a library you need to clone it from the repository and then run
+cd inside it and
+rake install
+
+
+http://patricklenz.com/posts/syntax-highlighting-for-a-rails-blog  -> syntax highlighting with redcarpet 2
+
+
+
+Creating slugs for url, nested resource slugs url(change the url id to title name) - http://jasoncodes.com/posts/rails-3-nested-resource-slugs
+
+gem 'friendly_id', '~> 3.3.0.rc2'
+
+D:\OpeniT PAP Files\February 2012 PAP\From_openitdotcom_github\websites\PHCFM>rails g friendly_id
+      create  db/migrate/20120224101805_create_slugs.rb
+
+D:\OpeniT PAP Files\February 2012 PAP\From_openitdotcom_github\websites\PHCFM>rails generate migration add_cached_slug_to_phcfms cached_slug:string
+      invoke  active_record
+      create    db/migrate/20120224102145_add_cached_slug_to_phcfms.rb
+
+D:\OpeniT PAP Files\February 2012 PAP\From_openitdotcom_github\websites\PHCFM>rails generate migration add_cached_slug_to_articles cached_slug:string
+      invoke  active_record
+      create    db/migrate/20120224102232_add_cached_slug_to_articles.rb
+
+D:\OpeniT PAP Files\February 2012 PAP\From_openitdotcom_github\websites\PHCFM>rails generate migration add_cached_slug_to_news_events cached_slug:string
+      invoke  active_record
+      create    db/migrate/20120224102408_add_cached_slug_to_news_events.rb
+
+D:\OpeniT PAP Files\February 2012 PAP\From_openitdotcom_github\websites\PHCFM>rails generate migration add_cached_slug_to_comments cached_slug:string
+      invoke  active_record
+      create    db/migrate/20120224102445_add_cached_slug_to_comments.rb
+
+D:\OpeniT PAP Files\February 2012 PAP\From_openitdotcom_github\websites\PHCFM>rails generate migration add_cached_slug_to_abouts cached_slug:string
+      invoke  active_record
+      create    db/migrate/20120224102610_add_cached_slug_to_abouts.rb
+
+Then run migration
+
+rake db:migrate:redo
+
+And generate slugs for any existing records
+D:\OpeniT PAP Files\February 2012 PAP\From_openitdotcom_github\websites\PHCFM>rake friendly_id:make_slugs MODEL=Article
+Article(1): friendly_id set to 'finally-i-have-peace-testimony'
+Article(2): friendly_id set to 'scriptures-for-deliverance-from-depression'
+Article(3): friendly_id set to 'the-marriage-relationship'
+
+D:\OpeniT PAP Files\February 2012 PAP\From_openitdotcom_github\websites\PHCFM>rake friendly_id:make_slugs MODEL=Phcfm  -> because there was no record yet
+
+D:\OpeniT PAP Files\February 2012 PAP\From_openitdotcom_github\websites\PHCFM>rake friendly_id:make_slugs MODEL=About
+About(1): friendly_id set to 'our-mission'
+About(2): friendly_id set to 'our-mission'
+About(3): friendly_id set to 'music'
+
+D:\OpeniT PAP Files\February 2012 PAP\From_openitdotcom_github\websites\PHCFM>rake friendly_id:make_slugs MODEL=News_Event
+NewsEvent(1): friendly_id set to 'news-today'
+
+D:\OpeniT PAP Files\February 2012 PAP\From_openitdotcom_github\websites\PHCFM>rake friendly_id:make_slugs MODEL=Comment
+Comment(1): friendly_id set to 'rail'
+Comment(2): friendly_id set to 'guest'
+Comment(3): friendly_id set to 'jason'
+Comment(4): friendly_id set to 'bob'
+Comment(5): friendly_id set to 'haha'
+Comment(6): friendly_id set to 'guest'
+Comment(7): friendly_id set to 'guest'
+Comment(8): friendly_id set to 'guest'
+Comment(9): friendly_id set to 'guest'
+Comment(10): friendly_id set to 'guest'
+Comment(11): friendly_id set to 'guest'
+Comment(12): friendly_id set to 'nice'
+Comment(13): friendly_id set to 'lala'
+Comment(14): friendly_id set to '555'
+Comment(15): friendly_id set to 'carla'
+Comment(16): friendly_id set to 'unknown'
+Comment(17): friendly_id set to 'mei'
+Comment(18): friendly_id set to 'bob'
+Comment(19): friendly_id set to 'ryan'
+Comment(20): friendly_id set to 'guest'
+Comment(21): friendly_id set to 'john'
+
+Incorrect MySQL client library version! This gem was compiled fo r 6.0.0 but the client library is 5.0.27. (RuntimeError)
+
+>download  mysql-connector-c-noinstall-6.0.2.zip 
+>extract 
+>copy the libmysql.dll to ruby/bin/
+
+if you get an error of:
+Please install the mysql adapter: `gem install activerecord-mysql-adapter` (mysql is not part of the bundle. Add it to Gemfile.) (LoadError)
+
+-- Change the adapter in database.yml to mysql2 if you're mysql in a gem file is mysql2, do not forget that!....
+
+Fixed the problem by updating the gemfile for my app to identify mysql2 as part of the bundle.
+
+To do this, navigate to the root of your app, run open gemfile
+
+Add the line gem 'mysql2', '< 0.3.7' directly below the gem line for rails.
+
+While in terminal at the root of your app, run bundle install
+
+Run bundle show mysql2 to verify the bundle worked. You should be good to go with the adapter now.
+
+My environment is Rails 3.1, MySql 5.5, Ruby 1.9.2.
+
+
+Installing mysql gem if the rails is using 3.xx already and you're current mysql client is on 5.xx only... 
+http://blog.mmediasys.com/2011/07/07/installing-mysql-on-windows-7-x64-and-using-ruby-with-it/
+gem install mysql --platform=ruby -- --with-mysql-dir=C:/mysql-connector-c-noinstall-6.0.2-win32 or
+gem install mysql2 --platform=ruby -- --with-mysql-dir=C:/mysql-connector-c-noinstall-6.0.2-win32 
+
+then copy latest version or 6.0.2 win32  mysql connector,  libmysql.dll and paste it to ruby directory in bin and 
+
+
+
+In order to use my brand new MySQL installation, now I need to install the MySQL bindings for it.
+
+But, there is a small detail: Ruby is 32bits and my MySQL is 64bits, this means I can’t use MySQL provided libraries from Ruby.
+
+Bummer! You told me to install the 64bits version!
+
+Don’t despair! MySQL Connector to the rescue!
+
+That is right, MySQL has something called Connector, the purpose of that library is to avoid a complete MySQL installation when you just need to connect to a remote one.
+
+It comes in different flavors, we are interested in C language support, since that is the language Ruby uses for it’s extensions.
+
+We are going to download a 32bits connector and use it!
+
+So, at my web browser again, decided to visit the MySQL Connector/C download page:
+
+http://dev.mysql.com/downloads/connector/c/
+
+Since I’m not interested in installing this Connector and pollute my clean 64bits installation, I’m going to download the non-installer version.
+
+I scrolled down the listing until I saw the noinstall 32bits version:
+
+mysql-connector-c-noinstall-6.0.2-win32.zip
+
+Decided to extract it to the root of my disk, so I ended with a folder named mysql-connector-c-noinstall-6.0.2-win32 in there.
+
+Remember: extract into a folder without spaces. The same goes for your Ruby installation and the DevKit installation.
+
+So, now that all MySQL prerequisites are in place, will open a new command prompt and prepare to install the gem.
+
+This time I’m going to use Ruby 1.9.2, properly installed and configured with the complementary Development Kit (DevKit) which is provided at RubyInstaller website (In case you haven’t installed yet, don’t forget to follow the installation instructions in the wiki)
+
+OK, so in a Command Prompt, will type the gem installation command:
+
+gem install mysql --platform=ruby -- --with-mysql-dir=C:/mysql-connector-c-noinstall-6.0.2-win32
+Note the use of forward slashes for the directory where MySQL Connector/C was extracted.
+
+The above command contains two special things:
+
+First, we are telling RubyGems that we want the ruby platform of mysql gem. This particular platform is the one that contains the source code and this will allow us to skip the pre-compiled version of the gem.
+
+The second part, which is added after two dashes, are the additional arguments that we are giving to the gem configuration process to locate our MySQL headers and libraries for successful compilation.
+
+As result of this command, you will see something like this:
+
+Fetching: mysql-2.8.1.gem (100%)
+Temporarily enhancing PATH to include DevKit...
+Building native extensions.  This could take a while...
+Successfully installed mysql-2.8.1
+1 gem installed
+Which indicates the gem installed successfully.
+
+In case you obtained a different result, please refer to RubyInstaller Troubleshooting page:
+
+https://github.com/oneclick/rubyinstaller/wiki/Troubleshooting
+
+And try the proposed solutions there.
+
+Now that we installed the gem, we can remove the connector folder we first extracted. Before do that, first we need to take out a file from there: libmysql.dll. This file is required by the gem we compiled and needs to be available for it.
+
+You can find it inside the lib directory of MySQL Connector.
+
+I personally recommend you place it along your Ruby installation, inside the bin directory.
+
+If you have multiple Ruby installations and you use Pik to change between them, you can place the library in the same directory Pik is installed. You need to remember that it is important the libmysql.dll file is on the PATH when you need to use it.
+
+OK, after all that big red warning, let’s test this thing on a IRB console:
+
+irb> require "rubygems"
+irb> require "mysql"
+irb> conn = Mysql.connect "localhost", "root", "abc123"
+irb> result = conn.query "SELECT 1"
+irb> result.num_rows
+=> 1
+irb> result.fetch_row
+=> ["1"]
+irb> result.free
+irb> conn.close
+irb> exit
+Great!, now you have not just a working MySQL installation but also Ruby configured to talk to it!
+
+Hope you enjoyed this post as I did enjoy creating it. Hope this ease your path on using MySQL with Ruby on Windows.
+
+
+
+http://kconrails.com/2010/12/02/routing-in-ruby-on-rails-3/
+
+http://ruby.railstutorial.org/book/ruby-on-rails-tutorial#cha:beginning
