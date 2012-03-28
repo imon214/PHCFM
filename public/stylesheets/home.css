@@ -111,7 +111,7 @@ div.overflow_table tr.even {
 }
 
 
-#module_links {
+/*#module_links {
     border-style: double;
     border-color: #D6D6D6;
     border-width: 1px;
@@ -126,7 +126,7 @@ div.overflow_table tr.even {
     -khtml-border-top-left-radius:5px;
     -khtml-border-top-right-radius:5px;        
     
-}
+}*/
 
 #content h1 {
     clear: none;

@@ -8,6 +8,7 @@
                           <div class="more"><a href="user_sessions/new">Register</a> or <a href="user_sessions">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= image_tag 'buttons/btn_search.gif', :name => 'search', :value => "" %></div>
                        <%# end %>-->   
                        <form action="">
+                         <%#*<div id="cse-search-form" style="width: 100%;">Loading</div>%>                         
                           <div><input type="text" name="q" id="q" /></div>
                           <div class="more"><!--<% if ! current_user %><a href="signup">Register</a> or <a href="login">Login</a><% end %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--><%= image_tag 'buttons/btn_search.gif', :name => 'search', :value => "" %></div>
                        </form>
@@ -27,7 +28,7 @@
                                   <%= image_tag 'announcements/announcements-white.gif', :width => 160.9, :height => 20 %>
                                   <p><%#= link_to "Annoucement", announcement_phcfms_path %></p>
                                   <iframe width="180" height="215" src="images/slideshow/announcement_scroller/newsnewstic.html" SCROLLING="no" FRAMEBORDER="0" border=0 allowTransparency="true"></iframe>
-                                <hr />
+
                                   <%= image_tag 'banners/jk_pilgrim.gif', :width => 180, :heigh => 150 %><br /><br /><a href="http://www.wordgrub.com" target="_blank"><%= image_tag 'logos/logo.jpeg', :width => 180, :height => 74, :title => "Visit wordgrub.com", :border => 0 %></a><br />
                                   <!--<div align="right">
                                     <%= image_tag 'logos/bible3.gif', :width => 80, :height => 150 %><%= image_tag 'logos/worldcfm_ek1.gif', :width => 80, :height => 120 %>
@@ -45,5 +46,17 @@
                                  </p>
                          </div>
 		</div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script type="text/javascript"> 
+                  google.load('search', '1', {language : 'en', style : google.loader.themes.MINIMALIST});
+                  google.setOnLoadCallback(function() {
+                    var customSearchOptions = {};  var customSearchControl = new google.search.CustomSearchControl(
+                      '008600773066408814077:j2iobpmnwzy', customSearchOptions);
+                    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+                    var options = new google.search.DrawOptions();
+                    options.enableSearchboxOnly("http://www.google.com/cse?cx=008600773066408814077:j2iobpmnwzy", null, true);
+                    customSearchControl.draw('cse-search-form', options);
+                  }, true);
+                </script>
 
 <%# end %>
